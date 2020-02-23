@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+	<title>Labs DS</title>
+	<meta charset='utf-8' />
+	<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div>
+			<canvas id="myCanvas" width="550" height="550" class="border"></canvas>
+			<div class = "style2">
+				<div id="info_table" class="border">
+					<h2>Labs DS</h2>
+					<div class="style1">Номер заліковки: 9326</div>
+					<div class="slidecontainer">
+						Кількість вершин:
+						<input id="number_of_vertex" type="range" min="1" max="20" value="12" class="slider"> = 
+						<div id="output" style="display: inline-block;"></div>
+					</div>
+					<div class="style1">
+						<input type="checkbox" id="directed">Напрямлений
+					</div>
+					<h3>Матриця суміжності</h3>
+					<table id='matrix'></table>
+				</div>
+			</div>
+		</div>	
+	<script src="main.js"></script>
+	</body>
+</html>
