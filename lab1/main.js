@@ -304,13 +304,13 @@ function drawArrowhead(from_x, from_y, to_x, to_y) {
  */
 function draw_graph() {
     draw_loops();
+	draw_lines();
     draw_vertex(270, 270, 1); // вершина в середині
 
     for (let i = 0; i < n; i++) {
         draw_vertex(array_vertex[i][0], array_vertex[i][1], i+1);
     }
 
-    draw_lines();
 }
 
 /**
