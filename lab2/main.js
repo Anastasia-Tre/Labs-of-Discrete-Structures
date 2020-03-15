@@ -35,15 +35,15 @@ ctx.font = "15px Arial";
 
 
 const directed = document.getElementById("directed"); // Перевірка на напрямленість графу
-const table = document.getElementById("matrix");
+const elem_table = document.getElementById("matrix");
 let elem_vertex_degree = document.getElementById("vertex_degree");
 let elem_isolated_vertex = document.getElementById("isolated_vertex");
 let elem_pendant_vertex = document.getElementById("pendant_vertex")
 let elem_regulara_graph = document.getElementById("regular_graph");
-let slider = document.getElementById("number_of_vertex");
-let output = document.getElementById("output");
-output.innerHTML = slider.value;
-let n = +slider.value; // кількість вершин
+let elem_slider = document.getElementById("number_of_vertex");
+let elem_output = document.getElementById("output");
+elem_output.innerHTML = elem_slider.value;
+let n = +elem_slider.value; // кількість вершин
 
 for (let i = 0; i < n; i++) {
     matrix_undirected[i] = [];
@@ -60,8 +60,6 @@ checked();
 
 // Перевірка на напрямленість графу
 function checked() {
-
-    
 
     if (!directed.checked) {
 
@@ -89,6 +87,7 @@ function checked() {
         pendant(matrix_undirected);
         draw_pendant_vertexs();
     }
+
     else {
         draw_matrix(matrix);
 
@@ -119,11 +118,11 @@ function checked() {
     else elem_regulara_graph.innerHTML = 'Граф нерегулярний';
 }
 
-slider.oninput = function() {
-    output.innerHTML = this.value;
+elem_slider.oninput = function() {
+    elem_output.innerHTML = this.value;
     n = +this.value;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    table.innerHTML = "";
+    elem_table.innerHTML = "";
     elem_vertex_degree.innerHTML = "";
     all_calculation();
     draw_graph();
@@ -134,7 +133,7 @@ slider.oninput = function() {
 
 directed.oninput = function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    table.innerHTML = "";
+    elem_table.innerHTML = "";
 
     elem_vertex_degree = document.getElementById("vertex_degree");
     elem_vertex_degree.innerHTML = "";

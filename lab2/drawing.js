@@ -124,7 +124,7 @@ function draw_graph() {
  */
 function draw_matrix(matrix) {
     for (let i = 0; i < n; i++) {
-        let row = table.insertRow(i);
+        let row = elem_table.insertRow(i);
         for (let j = 0; j < n; j++) {
             let cell = row.insertCell(j);
             cell.innerHTML = matrix[i][j];

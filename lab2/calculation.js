@@ -67,9 +67,14 @@ function all_calculation() {
     }
     else {
         matrix = matrix_from_scilab;
-        //matrix_undirected = [];
+        matrix_undirected = [];
         for (let i = 0; i < n; i++) {
-            matrix_undirected[i] = Array(n).fill(0);
+            matrix_undirected[i] = [];
+            for (let j = 0; j < n; j++) {
+                matrix_undirected[i][j] = 0;
+            }
+        }
+        for (let i = 0; i < n; i++) {
             for (let j = 0; j < n; j++) {
                 if (matrix[i][j]) {
                     matrix_undirected[j][i] = 1;
