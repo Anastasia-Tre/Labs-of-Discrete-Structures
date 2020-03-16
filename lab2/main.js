@@ -149,17 +149,27 @@ directed.oninput = function() {
 }
 
 
+/**
+ * Розрахунок степенів вершин для ненапрямленого графа
+ * 
+ */
 function degree_undirect(matrix) {
     for (let i = 0; i < n; i++) {
         vertexs_degrees[i] = 0;
         for (let j = 0; j < n; j++) {
             if (matrix[i][j]) {
-                vertexs_degrees[i]++;
+                if (i === j) vertexs_degrees[i] += 2;
+                else vertexs_degrees[i]++;
             }
         }
     }
 }
 
+
+/**
+ * Розрахунок напівстепенів заходу для напрямленого графа
+ * 
+ */
 function in_degree(matrix) {
     for (let j = 0; j < n; j++) {
         vertexs_degrees[j] = 0;
@@ -171,6 +181,11 @@ function in_degree(matrix) {
     }
 }
 
+
+/**
+ * Розрахунок напівстепенів виходу для напрямленого графа
+ * 
+ */
 function out_degree(matrix) {
     for (let i = 0; i < n; i++) {
         vertexs_degrees[i] = 0;
@@ -182,6 +197,11 @@ function out_degree(matrix) {
     }
 }
 
+
+/**
+ * Зображення таблиць степенів і напівстепенів
+ * 
+ */
 function draw_degree(vertexs_degrees) {
     let head = elem_vertex_degree.insertRow(0);
     let cell = head.insertCell(0);
@@ -201,16 +221,18 @@ function draw_degree(vertexs_degrees) {
 }
 
 
+/**
+ * Знаходження ізольованих вершин
+ * 
+ */
 function isolated(matrix) {
-
-    
 
     let mas = [];
     isolated_vertex = [];
     for (let i = 0; i < n; i++) {
         mas[i] = 0;
         for (let j = 0; j < n; j++) {
-            if(i !== j && matrix[i][j]) {
+            if(matrix[i][j]) {
                 mas[i]++;
             } 
         }
@@ -222,6 +244,10 @@ function isolated(matrix) {
 }
 
 
+/**
+ * Зображення ізольованих вершин
+ * 
+ */
 function draw_isolated_vertexs() {
     let row = elem_isolated_vertex.insertRow(0);
     for (let i = 0; i < isolated_vertex.length; i++) {
@@ -231,6 +257,10 @@ function draw_isolated_vertexs() {
 }
 
 
+/**
+ * Знаходження висячих вершин
+ * 
+ */
 function pendant(matrix) {
     let mas = [];
     pendant_vertex = [];
@@ -248,6 +278,11 @@ function pendant(matrix) {
     }
 }
 
+
+/**
+ * Зображення висячих вершин
+ * 
+ */
 function draw_pendant_vertexs() {
     let row = elem_pendant_vertex.insertRow(0);
     for (let i = 0; i < pendant_vertex.length; i++) {
@@ -256,7 +291,10 @@ function draw_pendant_vertexs() {
     }
 }
 
-
+/**
+ * Функція для визначення регулярності графа
+ * 
+ */
 function regular_graph() {
     let flag = 0;
     for (let i = 0; i < n; i++) {
