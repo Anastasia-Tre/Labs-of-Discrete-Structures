@@ -61,6 +61,15 @@ checked();
 // Перевірка на напрямленість графу
 function checked() {
 
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j]) {
+                matrix_undirected[j][i] = 1;
+                matrix_undirected[i][j] = 1;
+            }
+        }
+    }
+
     if (!directed.checked) {
 
         for (let i = 0; i < n; i++) {
@@ -80,29 +89,29 @@ function checked() {
         draw_degree(vertexs_degrees);
 
         elem_isolated_vertex.innerHTML = "";
-        isolated(matrix_undirected);
+        isolated(vertexs_degrees);
         draw_isolated_vertexs();
 
         elem_pendant_vertex.innerHTML = "";
-        pendant(matrix_undirected);
+        pendant(vertexs_degrees);
         draw_pendant_vertexs();
     }
 
     else {
         draw_matrix(matrix);
-
-        elem_isolated_vertex.innerHTML = "";
-        isolated(matrix_undirected);
-        draw_isolated_vertexs();
-
-        elem_pendant_vertex.innerHTML = "";
-        pendant(matrix_undirected);
-        draw_pendant_vertexs();
         
         in_degree(matrix);
         elem_vertex_degree = document.getElementById("in_degree");
         elem_vertex_degree.innerHTML = "";
         draw_degree(vertexs_degrees);
+
+        elem_pendant_vertex.innerHTML = "";
+        pendant(vertexs_degrees);
+        draw_pendant_vertexs();
+
+        elem_isolated_vertex.innerHTML = "";
+        isolated(vertexs_degrees);
+        draw_isolated_vertexs();
 
         out_degree(matrix);
         elem_vertex_degree = document.getElementById("out_degree");
@@ -225,22 +234,24 @@ function draw_degree(vertexs_degrees) {
  * Знаходження ізольованих вершин
  * 
  */
-function isolated(matrix) {
+function isolated(mas) {
 
-    let mas = [];
+    // let mas = [];
+    // for (let i = 0; i < n; i++) {
+    //     mas[i] = 0;
+    //     for (let j = 0; j < n; j++) {
+    //         if(matrix[i][j]) {
+    //             mas[i]++;
+    //         } 
+    //     }
+    // }
+    
     isolated_vertex = [];
-    for (let i = 0; i < n; i++) {
-        mas[i] = 0;
-        for (let j = 0; j < n; j++) {
-            if(matrix[i][j]) {
-                mas[i]++;
-            } 
-        }
-    }
 
     for (let i = 0; i < n; i++) {
         if(!mas[i]) isolated_vertex.push(i);
     }
+
 }
 
 
@@ -261,18 +272,18 @@ function draw_isolated_vertexs() {
  * Знаходження висячих вершин
  * 
  */
-function pendant(matrix) {
-    let mas = [];
-    pendant_vertex = [];
-    for (let i = 0; i < n; i++) {
-        mas[i] = 0;
-        for (let j = 0; j < n; j++) {
-            if(i !== j && matrix[i][j]) {
-                mas[i]++;
-            } 
-        }
-    }
+function pendant(mas) {
+    // let mas = [];
+    // for (let i = 0; i < n; i++) {
+    //     mas[i] = 0;
+    //     for (let j = 0; j < n; j++) {
+    //         if(i !== j && matrix[i][j]) {
+    //             mas[i]++;
+    //         } 
+    //     }
+    // }
 
+    pendant_vertex = [];
     for (let i = 0; i < n; i++) {
         if(mas[i] === 1) pendant_vertex.push(i);
     }
