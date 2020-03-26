@@ -64,6 +64,15 @@ checked();
 // Перевірка на напрямленість графу
 function checked() {
 
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j]) {
+                matrix_undirected[j][i] = 1;
+                matrix_undirected[i][j] = 1;
+            }
+        }
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     elem_table.innerHTML = "";
 
@@ -101,11 +110,11 @@ function checked() {
         draw_degree(vertexs_degrees);
 
         elem_isolated_vertex.innerHTML = "";
-        isolated(matrix_undirected);
+        isolated(vertexs_degrees);
         draw_isolated_vertexs();
 
         elem_pendant_vertex.innerHTML = "";
-        pendant(matrix_undirected);
+        pendant(vertexs_degrees);
         draw_pendant_vertexs();
 
         elem_table_in_2.innerHTML = "";
@@ -120,19 +129,19 @@ function checked() {
         draw_matrix(matrix, elem_table);
         reachability2(matrix);
         draw_matrix_reachability(array_reachability);
-
-        elem_isolated_vertex.innerHTML = "";
-        isolated(matrix_undirected);
-        draw_isolated_vertexs();
-
-        elem_pendant_vertex.innerHTML = "";
-        pendant(matrix_undirected);
-        draw_pendant_vertexs();
         
         in_degree(matrix);
         elem_vertex_degree = document.getElementById("in_degree");
         elem_vertex_degree.innerHTML = "";
         draw_degree(vertexs_degrees);
+
+        elem_pendant_vertex.innerHTML = "";
+        pendant(vertexs_degrees);
+        draw_pendant_vertexs();
+
+        elem_isolated_vertex.innerHTML = "";
+        isolated(vertexs_degrees);
+        draw_isolated_vertexs();
 
         out_degree(matrix);
         elem_vertex_degree = document.getElementById("out_degree");

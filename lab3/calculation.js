@@ -186,22 +186,24 @@ function out_degree(matrix) {
  * Знаходження ізольованих вершин
  * 
  */
-function isolated(matrix) {
+function isolated(mas) {
 
-    let mas = [];
+    // let mas = [];
+    // for (let i = 0; i < n; i++) {
+    //     mas[i] = 0;
+    //     for (let j = 0; j < n; j++) {
+    //         if(matrix[i][j]) {
+    //             mas[i]++;
+    //         } 
+    //     }
+    // }
+    
     isolated_vertex = [];
-    for (let i = 0; i < n; i++) {
-        mas[i] = 0;
-        for (let j = 0; j < n; j++) {
-            if(matrix[i][j]) {
-                mas[i]++;
-            } 
-        }
-    }
 
     for (let i = 0; i < n; i++) {
         if(!mas[i]) isolated_vertex.push(i);
     }
+
 }
 
 
@@ -209,22 +211,23 @@ function isolated(matrix) {
  * Знаходження висячих вершин
  * 
  */
-function pendant(matrix) {
-    let mas = [];
-    pendant_vertex = [];
-    for (let i = 0; i < n; i++) {
-        mas[i] = 0;
-        for (let j = 0; j < n; j++) {
-            if(i !== j && matrix[i][j]) {
-                mas[i]++;
-            } 
-        }
-    }
+function pendant(mas) {
+    // let mas = [];
+    // for (let i = 0; i < n; i++) {
+    //     mas[i] = 0;
+    //     for (let j = 0; j < n; j++) {
+    //         if(i !== j && matrix[i][j]) {
+    //             mas[i]++;
+    //         } 
+    //     }
+    // }
 
+    pendant_vertex = [];
     for (let i = 0; i < n; i++) {
         if(mas[i] === 1) pendant_vertex.push(i);
     }
 }
+
 
 
 /**
