@@ -25,6 +25,7 @@ let matrix_from_scilab = [
   ];
 
 let vertexs_degrees = [];
+let vertexs_degrees_in_out = [];
 let isolated_vertex = [];
 let pendant_vertex = [];
 
@@ -104,19 +105,20 @@ function checked() {
         elem_vertex_degree = document.getElementById("in_degree");
         elem_vertex_degree.innerHTML = "";
         draw_degree(vertexs_degrees);
-
-        elem_pendant_vertex.innerHTML = "";
-        pendant(vertexs_degrees);
-        draw_pendant_vertexs();
-
-        elem_isolated_vertex.innerHTML = "";
-        isolated(vertexs_degrees);
-        draw_isolated_vertexs();
-
+        
         out_degree(matrix);
         elem_vertex_degree = document.getElementById("out_degree");
         elem_vertex_degree.innerHTML = "";
         draw_degree(vertexs_degrees);
+
+        elem_pendant_vertex.innerHTML = "";
+        pendant(vertexs_degrees_in_out);
+        draw_pendant_vertexs();
+
+        elem_isolated_vertex.innerHTML = "";
+        isolated(vertexs_degrees_in_out);
+        draw_isolated_vertexs();
+
     }
 
     let flag = regular_graph();
@@ -182,9 +184,11 @@ function degree_undirect(matrix) {
 function in_degree(matrix) {
     for (let j = 0; j < n; j++) {
         vertexs_degrees[j] = 0;
+        vertexs_degrees_in_out[j] = 0
         for (let i = 0; i < n; i++) {
             if(matrix[i][j]) {
                 vertexs_degrees[j]++;
+                vertexs_degrees_in_out[j]++;
             }
         }
     }
@@ -201,6 +205,7 @@ function out_degree(matrix) {
         for (let j = 0; j < n; j++) {
             if(matrix[i][j]) {
                 vertexs_degrees[i]++;
+                vertexs_degrees_in_out[i]++;
             }
         }
     }
