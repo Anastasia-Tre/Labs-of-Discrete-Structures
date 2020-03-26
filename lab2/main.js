@@ -105,7 +105,7 @@ function checked() {
         elem_vertex_degree = document.getElementById("in_degree");
         elem_vertex_degree.innerHTML = "";
         draw_degree(vertexs_degrees);
-        
+
         out_degree(matrix);
         elem_vertex_degree = document.getElementById("out_degree");
         elem_vertex_degree.innerHTML = "";
@@ -184,7 +184,7 @@ function degree_undirect(matrix) {
 function in_degree(matrix) {
     for (let j = 0; j < n; j++) {
         vertexs_degrees[j] = 0;
-        vertexs_degrees_in_out[j] = 0
+        vertexs_degrees_in_out[j] = 0;
         for (let i = 0; i < n; i++) {
             if(matrix[i][j]) {
                 vertexs_degrees[j]++;

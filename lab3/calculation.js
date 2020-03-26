@@ -158,9 +158,11 @@ function degree_undirect(matrix) {
 function in_degree(matrix) {
     for (let j = 0; j < n; j++) {
         vertexs_degrees[j] = 0;
+        vertexs_degrees_in_out[j] = 0;
         for (let i = 0; i < n; i++) {
             if(matrix[i][j]) {
                 vertexs_degrees[j]++;
+                vertexs_degrees_in_out[j]++;
             }
         }
     }
@@ -177,6 +179,7 @@ function out_degree(matrix) {
         for (let j = 0; j < n; j++) {
             if(matrix[i][j]) {
                 vertexs_degrees[i]++;
+                vertexs_degrees_in_out[i]++;
             }
         }
     }

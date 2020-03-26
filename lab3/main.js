@@ -25,6 +25,7 @@ let matrix_from_scilab = [
   ];
 
 let vertexs_degrees = [];
+let vertexs_degrees_in_out = [];
 let isolated_vertex = [];
 let pendant_vertex = [];
 let array_reachability = [];
@@ -135,18 +136,18 @@ function checked() {
         elem_vertex_degree.innerHTML = "";
         draw_degree(vertexs_degrees);
 
-        elem_pendant_vertex.innerHTML = "";
-        pendant(vertexs_degrees);
-        draw_pendant_vertexs();
-
-        elem_isolated_vertex.innerHTML = "";
-        isolated(vertexs_degrees);
-        draw_isolated_vertexs();
-
         out_degree(matrix);
         elem_vertex_degree = document.getElementById("out_degree");
         elem_vertex_degree.innerHTML = "";
         draw_degree(vertexs_degrees);
+
+        elem_pendant_vertex.innerHTML = "";
+        pendant(vertexs_degrees_in_out);
+        draw_pendant_vertexs();
+
+        elem_isolated_vertex.innerHTML = "";
+        isolated(vertexs_degrees_in_out);
+        draw_isolated_vertexs();
 
         elem_table_in_2.innerHTML = "";
         elem_table_in_3.innerHTML = "";
