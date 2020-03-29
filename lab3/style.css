@@ -21,13 +21,14 @@ p {
 }
 
 .style2 {
-    float: left; 
+    position: absolute; 
     width: 375px; 
     height: 500px; 
     padding-right: 15px;
 }
 .style3 {
-    float: right; 
+    position: absolute;
+    margin-left: 960px;
     width: 360px; 
     height: 500px; 
     padding-right: 15px;

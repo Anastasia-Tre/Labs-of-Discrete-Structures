@@ -123,6 +123,7 @@ function draw_graph() {
  * 
  */
 function draw_matrix(matrix, elem) {
+    elem.innerHTML = "";
     for (let i = 0; i < n; i++) {
         let row = elem.insertRow(i);
         for (let j = 0; j < n; j++) {
@@ -137,6 +138,7 @@ function draw_matrix(matrix, elem) {
  * 
  */
 function draw_degree(vertexs_degrees) {
+    elem_vertex_degree.innerHTML = "";
     let head = elem_vertex_degree.insertRow(0);
     let cell = head.insertCell(0);
     cell.innerHTML = 'Номер Вершини';
@@ -160,6 +162,7 @@ function draw_degree(vertexs_degrees) {
  * 
  */
 function draw_isolated_vertexs() {
+    elem_isolated_vertex.innerHTML = "";
     let row = elem_isolated_vertex.insertRow(0);
     for (let i = 0; i < isolated_vertex.length; i++) {
         let cell = row.insertCell(i);
@@ -174,6 +177,7 @@ function draw_isolated_vertexs() {
  * 
  */
 function draw_pendant_vertexs() {
+    elem_pendant_vertex.innerHTML = "";
     let row = elem_pendant_vertex.insertRow(0);
     for (let i = 0; i < pendant_vertex.length; i++) {
         let cell = row.insertCell(i);

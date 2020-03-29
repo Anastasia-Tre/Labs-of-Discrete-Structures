@@ -247,3 +247,36 @@ function regular_graph() {
     }
     return true;
 }
+
+// Алгоритм Флойда — Уоршелла
+function reachability(matrix) {
+    array_reachability = [];
+
+    for (let i = 0; i < n; i++) {
+        array_reachability[i] = [];
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j] === 0) {
+                array_reachability[i][j] = 10000;
+            }
+            else array_reachability[i][j] = matrix[i][j]
+        }
+    }
+
+    for (let k = 0; k < n; k++) {
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < n; j++) {
+                array_reachability[i][j] = Math.min(array_reachability[i][j],
+                    array_reachability[i][k] + array_reachability[k][j]);
+            }
+        }
+    }
+
+    // Булеве перетворення
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (array_reachability[i][j] !== 0) {
+                array_reachability[i][j] = 1;
+            }
+        }
+    }
+}
