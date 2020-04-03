@@ -1,4 +1,51 @@
 
+function calculation(matrix) {
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    elem_table.innerHTML = "";
+
+    elem_vertex_degree = document.getElementById("vertex_degree");
+    elem_vertex_degree.innerHTML = "";
+    elem_vertex_degree = document.getElementById("in_degree");
+    elem_vertex_degree.innerHTML = "";
+    elem_vertex_degree = document.getElementById("out_degree");
+    elem_vertex_degree.innerHTML = "";
+
+    draw_graph();
+
+    draw_matrix(matrix, elem_table);
+    reachability(matrix);
+    draw_matrix_reachability(array_reachability);
+    
+
+    matrix_in_2 = multiplication_matrix(matrix, matrix);
+    matrix_in_3 = multiplication_matrix(matrix_in_2, matrix);
+    draw_matrix(matrix_in_2, elem_table_in_2);
+    draw_matrix(matrix_in_3, elem_table_in_3);    
+
+    connectivity_matrix = connectivity(array_reachability);
+    draw_matrix(connectivity_matrix, elem_connectivity_matrix);
+    
+    komponenta(connectivity_matrix);
+    draw_matrix(connectivity_matrix, elem_connectivity_matrix_komponenta);
+    vec(vector_index);
+    search_komponenta(connectivity_matrix, vector_index);
+    draw_komponents(komponents);
+
+
+    let flag = regular_graph();
+    elem_regulara_graph.innerHTML = '';
+    if (flag) {
+        elem_regulara_graph.innerHTML = 'Регулярнiсть графу = ' + vertexs_degrees[0];
+    }
+    else elem_regulara_graph.innerHTML = 'Граф нерегулярний';
+
+}
+
+
+
+
+
 
 /**
  * Функція для визначення координат вершини та петлi.
@@ -22,7 +69,7 @@ function vertex(p, q, x0, y0) {
  * Розрахунок координат вершин і зв'язків.
  * 
  */
-function all_calculation() {
+function calculate_vertex_matrix() {
 	array_vertex =[];
     // Координата центра
 	array_vertex.push([270, 270, 295 ,270 ]);
@@ -249,7 +296,7 @@ function regular_graph() {
 }
 
 // Алгоритм Флойда — Уоршелла
-function reachability(matrix) {
+function reachability2(matrix) {
     array_reachability = [];
 
     for (let i = 0; i < n; i++) {
