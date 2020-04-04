@@ -4,12 +4,7 @@ function calculation(matrix, n) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     elem_table.innerHTML = "";
 
-    elem_vertex_degree = document.getElementById("vertex_degree");
-    elem_vertex_degree.innerHTML = "";
-    elem_vertex_degree = document.getElementById("in_degree");
-    elem_vertex_degree.innerHTML = "";
-    elem_vertex_degree = document.getElementById("out_degree");
-    elem_vertex_degree.innerHTML = "";
+    
 
     draw_graph(n);
 
@@ -190,6 +185,7 @@ function findCoordinates(from, to) {
  * 
  */
 function degree_undirect(matrix) {
+    vertexs_degrees = [];
     for (let i = 0; i < n; i++) {
         vertexs_degrees[i] = 0;
         for (let j = 0; j < n; j++) {
@@ -207,6 +203,8 @@ function degree_undirect(matrix) {
  * 
  */
 function in_degree(matrix) {
+    vertexs_degrees_in_out = [];
+    vertexs_degrees = [];
     for (let j = 0; j < n; j++) {
         vertexs_degrees[j] = 0;
         vertexs_degrees_in_out[j] = 0;
@@ -225,6 +223,7 @@ function in_degree(matrix) {
  * 
  */
 function out_degree(matrix) {
+    vertexs_degrees = [];
     for (let i = 0; i < n; i++) {
         vertexs_degrees[i] = 0;
         for (let j = 0; j < n; j++) {

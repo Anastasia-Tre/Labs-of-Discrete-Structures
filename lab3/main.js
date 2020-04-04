@@ -12,10 +12,15 @@ checked();
 function checked() {
 
     calculate_vertex_matrix(n, false);
+    elem_vertex_degree = document.getElementById("vertex_degree");
+    elem_vertex_degree.innerHTML = "";
+    elem_vertex_degree = document.getElementById("in_degree");
+    elem_vertex_degree.innerHTML = "";
+    elem_vertex_degree = document.getElementById("out_degree");
+    elem_vertex_degree.innerHTML = "";
     
     if (!directed.checked) {
         
-        calculation(matrix_undirected, n);
         
         elem_vertex_degree = document.getElementById("vertex_degree");
         degree_undirect(matrix_undirected);
@@ -27,10 +32,11 @@ function checked() {
         pendant(vertexs_degrees);
         draw_pendant_vertexs();
 
+        calculation(matrix_undirected, n);
+
     }
 
     else {
-        calculation(matrix, n);
 
         in_degree(matrix);
         elem_vertex_degree = document.getElementById("in_degree");
@@ -45,6 +51,9 @@ function checked() {
 
         isolated(vertexs_degrees_in_out);
         draw_isolated_vertexs();
+
+        calculation(matrix, n);
+
 
     }
 
