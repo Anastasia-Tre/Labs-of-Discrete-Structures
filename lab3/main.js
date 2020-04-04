@@ -82,6 +82,7 @@ function draw_matrix_reachability(matrix) {
 }
 
 
+
 /**
  * Множення матриць.
  * 
@@ -99,6 +100,8 @@ function multiplication_matrix(matrix1, matrix2) {
     }
     return result;
 }
+
+
 
 /**
  * Знаходження матриці досяжності.
@@ -144,6 +147,7 @@ function reachability(matrix) {
     array_reachability = result;
     return result;
 }
+
 
 
 /**
@@ -216,15 +220,6 @@ function komponenta(connectivity_matrix) {
 
 
 
-function vec(vector_index) {
-    let row = elem_connectivity_matrix_komponenta.insertRow(n);
-    for (let i = 0; i < n; i++) {
-        let cell = row.insertCell(i);
-        cell.innerHTML = vector_index[i];
-    }
-
-}
-
 /**
  * Знаходження масиву компонент сильної зв'язності
  * 
@@ -240,6 +235,7 @@ function search_komponenta(matrix, vector_index) {
     }
     komponents.push(vector_index.slice(temp, n));
 }
+
 
 /**
  * Функція для зміни місцями індексів
@@ -303,7 +299,10 @@ function search_edges(matrix) {
 
 
 
-
+/**
+ * Знаходження маршрутів довжиною 2
+ * 
+ */
 function search_walk_2(matrix) {
     array_walk_2 = [];
 
@@ -318,6 +317,12 @@ function search_walk_2(matrix) {
     }
 }
 
+
+
+/**
+ * Знаходження маршрутів довжиною 3
+ * 
+ */
 function search_walk_3(matrix) {
     array_walk_3 = [];
 
@@ -337,6 +342,12 @@ function search_walk_3(matrix) {
     }
 }
 
+
+
+/**
+ * Зображення маршрутів
+ * 
+ */
 function draw_walks() {
     elem_walk_2.innerHTML = "";
     elem_walk_3.innerHTML = "";
@@ -354,6 +365,11 @@ function draw_walks() {
 }
 
 
+
+/**
+ * Створювання масиву звязку між вершиною і компонентою
+ * 
+ */
 function connect_vertex_komponenta() {
     vertex_komponent = [];
     for (let i = 0; i < komponents.length; i++) {
@@ -363,6 +379,12 @@ function connect_vertex_komponenta() {
     }
 }
 
+
+
+/**
+ * Створювання матриці суміжності для графа конденсації
+ * 
+ */
 function create_matrix_condition() {
     matrix_condition = [];
 
@@ -376,12 +398,17 @@ function create_matrix_condition() {
     for (let i = 0; i < array_edges.length; i++) {
         if (vertex_komponent[array_edges[i][0]] !== vertex_komponent[array_edges[i][1]]) {
             matrix_condition[vertex_komponent[array_edges[i][0]]][vertex_komponent[array_edges[i][1]]] = 1;
-            //console.log("*")
         }
     }    
 
 }
 
+
+
+/**
+ * Зображення графу конденсації
+ * 
+ */
 function draw_graph_condition() {
     ctx = graph_cond;
     ctx.clearRect(0, 0, canvas.width, canvas.height);

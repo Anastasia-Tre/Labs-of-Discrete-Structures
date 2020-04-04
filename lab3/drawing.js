@@ -184,3 +184,17 @@ function draw_pendant_vertexs() {
         cell.innerHTML = pendant_vertex[i] + 1;
     }
 }
+
+
+
+function vec(vector_index) {
+    let row = elem_connectivity_matrix_komponenta.insertRow(n);
+    for (let i = 0; i < n; i++) {
+        let cell = row.insertCell(i);
+        cell.innerHTML = vector_index[i];
+    }
+
+}
+
+
+

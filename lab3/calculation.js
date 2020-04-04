@@ -28,7 +28,7 @@ function calculation(matrix, n) {
     
     komponenta(connectivity_matrix);
     draw_matrix(connectivity_matrix, elem_connectivity_matrix_komponenta,n);
-    vec(vector_index);
+    //vec(vector_index);
     search_komponenta(connectivity_matrix, vector_index);
     draw_komponents(komponents);
 
