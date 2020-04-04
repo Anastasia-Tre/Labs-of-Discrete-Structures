@@ -22,7 +22,7 @@ function draw_vertex(x, y, label) {
  * Зображення петлей.
  *
  */
-function draw_loops() {
+function draw_loops(n) {
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
             if(matrix[i][j] && i === j) {
@@ -38,7 +38,7 @@ function draw_loops() {
  * Зображення зв'язків.
  *
  */
-function draw_lines() {
+function draw_lines(n) {
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
             if(matrix[i][j]) {
@@ -107,9 +107,9 @@ function drawArrowhead(from_x, from_y, to_x, to_y) {
  * Відмалювання всього графу.
  *
  */
-function draw_graph() {
-    draw_loops();
-	draw_lines();
+function draw_graph(n) {
+    draw_loops(n);
+	draw_lines(n);
     draw_vertex(270, 270, 1); // вершина в середині
 
     for (let i = 0; i < n; i++) {
@@ -122,7 +122,7 @@ function draw_graph() {
  * Зобрження матриці.
  * 
  */
-function draw_matrix(matrix, elem) {
+function draw_matrix(matrix, elem, n) {
     elem.innerHTML = "";
     for (let i = 0; i < n; i++) {
         let row = elem.insertRow(i);

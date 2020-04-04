@@ -11,7 +11,7 @@
 				<h2>Граф</h2>
 				<canvas id="myCanvas" width="550" height="550" class="border"></canvas>
 				<h3>Граф конденсації</h3>
-				<canvas id="graph_condition" width="550" height="200" class="border"></canvas>
+				<canvas id="graph_condition" width="550" height="550" class="border"></canvas>
 			</div>
 
 			<div class = "style2">
@@ -20,7 +20,7 @@
 					<div class="style1">Номер заліковки: 9326</div>
 					<div class="slidecontainer">
 						Кількість вершин:
-						<input id="number_of_vertex" type="range" min="1" max="20" value="12" class="slider"> = 
+						<input id="number_of_vertex" type="range" min="1" max="17" value="12" class="slider"> = 
 						<div id="output" style="display: inline-block;"></div>
 					</div>
 					<div class="style1">
@@ -51,9 +51,15 @@
 					<h3>A ^ 2</h3>
 					<table id='matrix^2'></table>
 
+					<h3>Маршрути довжиною 2</h3>
+					<p id='walk_2' style="width: 250;"></p>
+
 					<h3>A ^ 3</h3>
 					<table id='matrix^3'></table>
 					
+					<h3>Маршрути довжиною 3</h3>
+					<p id='walk_3' style="width: 250;"></p>
+
 				</div>
 			</div>
 			<div class="style3">
@@ -69,19 +75,9 @@
 
 					<h3>Компоненти зв'язності</h3>
 					<table id='table_komponents' style="width: 300px;"></table>
-
-					<!-- <h3>Try - Матриця суміжності</h3>
-					<table id='try_matrix'></table>
-
-					<h3>Try - Матриця досяжності</h3>
-					<table id='try_matrix_reachability'></table>
-
-					<h3>Try-Матриця сильної зв'язності</h3>
-					<table id='try_connectivity_matrix'></table>
-
-					<h3>Try - Матриця досяжності^2</h3>
-					<table id='try_matrix_reachability_2'></table> -->
-
+					
+					<h3>Матриця суміжності графа конденсації</h3>
+					<table id='matrix_condition'></table>
 					
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 
-function calculation(matrix) {
+function calculation(matrix, n) {
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     elem_table.innerHTML = "";
@@ -11,7 +11,7 @@ function calculation(matrix) {
     elem_vertex_degree = document.getElementById("out_degree");
     elem_vertex_degree.innerHTML = "";
 
-    draw_graph();
+    draw_graph(n);
 
     draw_matrix(matrix, elem_table);
     reachability(matrix);
@@ -20,26 +20,30 @@ function calculation(matrix) {
 
     matrix_in_2 = multiplication_matrix(matrix, matrix);
     matrix_in_3 = multiplication_matrix(matrix_in_2, matrix);
-    draw_matrix(matrix_in_2, elem_table_in_2);
-    draw_matrix(matrix_in_3, elem_table_in_3);    
+    draw_matrix(matrix_in_2, elem_table_in_2,n);
+    draw_matrix(matrix_in_3, elem_table_in_3,n);    
 
     connectivity_matrix = connectivity(array_reachability);
-    draw_matrix(connectivity_matrix, elem_connectivity_matrix);
+    draw_matrix(connectivity_matrix, elem_connectivity_matrix,n);
     
     komponenta(connectivity_matrix);
-    draw_matrix(connectivity_matrix, elem_connectivity_matrix_komponenta);
+    draw_matrix(connectivity_matrix, elem_connectivity_matrix_komponenta,n);
     vec(vector_index);
     search_komponenta(connectivity_matrix, vector_index);
     draw_komponents(komponents);
 
+    
+    search_walk_2(matrix);
+    search_walk_3(matrix);
+    draw_walks();
 
-    let flag = regular_graph();
-    elem_regulara_graph.innerHTML = '';
-    if (flag) {
-        elem_regulara_graph.innerHTML = 'Регулярнiсть графу = ' + vertexs_degrees[0];
-    }
-    else elem_regulara_graph.innerHTML = 'Граф нерегулярний';
 
+    connect_vertex_komponenta();
+    search_edges(matrix);
+    create_matrix_condition();
+    
+    draw_matrix(matrix_condition, elem_matrix_condition, komponents.length);
+    draw_graph_condition();
 }
 
 
@@ -69,8 +73,8 @@ function vertex(p, q, x0, y0) {
  * Розрахунок координат вершин і зв'язків.
  * 
  */
-function calculate_vertex_matrix() {
-	array_vertex =[];
+function calculate_vertex_matrix(n, cond) {
+	array_vertex = [];
     // Координата центра
 	array_vertex.push([270, 270, 295 ,270 ]);
 
@@ -89,49 +93,49 @@ function calculate_vertex_matrix() {
         n3 = +n1n2n3n4[2],
         n4 = +n1n2n3n4[3];
 
-
+    if (cond) {
+        matrix = matrix_condition;
+    }
+    
     // Якщо кількість вершин більше 12, то зв'язки розраховуються випадковим чином
-    if (n > 12) {
+    else if (n > 12) {
         matrix = [];
         for (let i = 0; i < n; i++) {
             matrix[i] = [];
-            matrix_undirected[i] = [];
             for (let j = 0; j < n; j++) {
                 matrix[i][j] = Math.floor( (1.0 - n3*0.02 - n4*0.005 - 0.25) * (Math.random() + Math.random()));
-                matrix_undirected[i][j] = 0;
             }
         }
-        //matrix_undirected = [];
-        for (let i = 0; i < n; i++) {
-            matrix_undirected[i] = Array(n).fill(0);
-            for (let j = 0; j < n; j++) {
-                if (matrix[i][j]) {
-                    matrix_undirected[j][i] = 1;
-                    matrix_undirected[i][j] = 1;
-                }
-            }
-        }
+        undirect(matrix);
     }
     else {
         matrix = matrix_from_scilab;
-        matrix_undirected = [];
-        for (let i = 0; i < n; i++) {
-            matrix_undirected[i] = [];
-            for (let j = 0; j < n; j++) {
-                matrix_undirected[i][j] = 0;
-            }
+        undirect(matrix);
+        
+    }
+}
+
+/**
+ * Побудова неорітованого графа.
+ * 
+ */
+function undirect(matrix) {
+    matrix_undirected = [];
+    for (let i = 0; i < n; i++) {
+        matrix_undirected[i] = [];
+        for (let j = 0; j < n; j++) {
+            matrix_undirected[i][j] = 0;
         }
-        for (let i = 0; i < n; i++) {
-            for (let j = 0; j < n; j++) {
-                if (matrix[i][j]) {
-                    matrix_undirected[j][i] = 1;
-                    matrix_undirected[i][j] = 1;
-                }
+    }
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j]) {
+                matrix_undirected[j][i] = 1;
+                matrix_undirected[i][j] = 1;
             }
         }
     }
 }
-
 
 
 /**
@@ -285,14 +289,22 @@ function pendant(mas) {
  * 
  */
 function regular_graph() {
-    let flag = 0;
+    let flag = true;
     for (let i = 0; i < n; i++) {
         if (vertexs_degrees[i] === vertexs_degrees[0]) {
             continue;
         }
-        else return false;
+        else {
+            flag = false;
+            break;
+        }
     }
-    return true;
+    
+    elem_regulara_graph.innerHTML = '';
+    if (flag) {
+        elem_regulara_graph.innerHTML = 'Регулярнiсть графу = ' + vertexs_degrees[0];
+    }
+    else elem_regulara_graph.innerHTML = 'Граф нерегулярний';
 }
 
 // Алгоритм Флойда — Уоршелла

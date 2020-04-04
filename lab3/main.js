@@ -11,11 +11,11 @@ checked();
 // Перевірка на напрямленість графу
 function checked() {
 
-    calculate_vertex_matrix();
+    calculate_vertex_matrix(n, false);
     
     if (!directed.checked) {
         
-        calculation(matrix_undirected);
+        calculation(matrix_undirected, n);
         
         elem_vertex_degree = document.getElementById("vertex_degree");
         degree_undirect(matrix_undirected);
@@ -30,7 +30,7 @@ function checked() {
     }
 
     else {
-        calculation(matrix);
+        calculation(matrix, n);
 
         in_degree(matrix);
         elem_vertex_degree = document.getElementById("in_degree");
@@ -47,6 +47,8 @@ function checked() {
         draw_isolated_vertexs();
 
     }
+
+    regular_graph();
 }
 
 elem_slider.oninput = function() {
@@ -191,7 +193,7 @@ function komponenta(connectivity_matrix) {
     let last1;
 
     for (let i = 0; i < n; i++) {
-        vector_index[i] = i;
+        vector_index[i] = i + 1;
     }
 
 
@@ -268,12 +270,6 @@ function swap_matrix(matrix, ind1, ind2) {
 }
 
 
-function sort_matrix(matrix, vector_index) {
-    
-
-    
-}
-
 
 /**
  * Зображення компонент сильної зв'язності
@@ -288,3 +284,109 @@ function draw_komponents(komponents) {
     }
 }
 
+
+/**
+ * Створювання списку ребер матриці
+ * 
+ */
+function search_edges(matrix) {
+    array_edges = [];
+
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j]) {
+                array_edges.push([i, j]);
+            }
+        }
+    }
+}
+
+
+
+
+function search_walk_2(matrix) {
+    array_walk_2 = [];
+
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j] && i !== j) {
+                for ( let k = 0; k < n; k++) {
+                    if (matrix[j][k] && j !== k) array_walk_2.push([i+1, j+1, k+1]);
+                }
+            }
+        }
+    }
+}
+
+function search_walk_3(matrix) {
+    array_walk_3 = [];
+
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j] && i !== j) {
+                for ( let k = 0; k < n; k++) {
+                    if (matrix[j][k] && j !== k) {
+                        for ( let l = 0; l < n; l++) {
+                            if (matrix[k][l] && k !== l) 
+                            array_walk_3.push([i+1, j+1, k+1, l+1]);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function draw_walks() {
+    elem_walk_2.innerHTML = "";
+    elem_walk_3.innerHTML = "";
+
+    for (let elem of array_walk_2) {
+        let str = "[" + elem + "] ";
+        elem_walk_2.innerHTML += str;
+    }
+
+    for (let elem of array_walk_3) {
+        let str = "[" + elem + "] ";
+        elem_walk_3.innerHTML += str;
+    }
+
+}
+
+
+function connect_vertex_komponenta() {
+    vertex_komponent = [];
+    for (let i = 0; i < komponents.length; i++) {
+        for (let elem of komponents[i]) {
+            vertex_komponent[elem - 1] = i;
+        }
+    }
+}
+
+function create_matrix_condition() {
+    matrix_condition = [];
+
+    for (let i = 0; i < komponents.length; i++) {
+        matrix_condition[i] = [];
+        for (let j = 0; j < komponents.length; j++) {
+            matrix_condition[i][j] = 0;
+        }
+    }
+
+    for (let i = 0; i < array_edges.length; i++) {
+        if (vertex_komponent[array_edges[i][0]] !== vertex_komponent[array_edges[i][1]]) {
+            matrix_condition[vertex_komponent[array_edges[i][0]]][vertex_komponent[array_edges[i][1]]] = 1;
+            //console.log("*")
+        }
+    }    
+
+}
+
+function draw_graph_condition() {
+    ctx = graph_cond;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    calculate_vertex_matrix(komponents.length, true);
+    draw_graph(komponents.length);
+    calculate_vertex_matrix(n);
+    ctx = canvas.getContext("2d");
+}

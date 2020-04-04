@@ -26,9 +26,14 @@ let matrix_in_2,  matrix_in_3, connectivity_matrix;
 let vector_index = [];
 let komponents = [];
 let sorted_matrix = [];
+let array_edges = [];
+let array_walk_2 = [];
+let array_walk_3 = [];
+let matrix_condition = [];
+let vertex_komponent = [];
 
 const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
+let ctx = canvas.getContext("2d");
 ctx.font = "15px Arial";
 
 const elem_graph_condition = document.getElementById("graph_condition");
@@ -44,6 +49,10 @@ const elem_table_in_3 = document.getElementById("matrix^3");
 const elem_connectivity_matrix = document.getElementById("connectivity_matrix");
 const elem_connectivity_matrix_komponenta = document.getElementById("connectivity_matrix_komponenta");
 const elem_table_komponents = document.getElementById("table_komponents");
+const elem_walk_2 = document.getElementById("walk_2");
+const elem_walk_3 = document.getElementById("walk_3");
+const elem_matrix_condition = document.getElementById("matrix_condition");
+
 let elem_vertex_degree = document.getElementById("vertex_degree");
 let elem_isolated_vertex = document.getElementById("isolated_vertex");
 let elem_pendant_vertex = document.getElementById("pendant_vertex")
