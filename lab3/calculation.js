@@ -13,7 +13,7 @@ function calculation(matrix, n) {
 
     draw_graph(n);
 
-    draw_matrix(matrix, elem_table);
+    draw_matrix(matrix, elem_table,n);
     reachability(matrix);
     draw_matrix_reachability(array_reachability);
     
