@@ -32,6 +32,12 @@ let array_walk_3 = [];
 let matrix_condition = [];
 let vertex_komponent = [];
 
+let array_dfs = [];
+let array_halt = [];
+let k;
+let matrix_tree = [];
+let matrix_conformity = [];
+
 const canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 ctx.font = "15px Arial";
@@ -40,6 +46,12 @@ ctx.font = "15px Arial";
 // const graph_cond = elem_graph_condition.getContext("2d");
 // graph_cond.font = "15px Arial";
 
+const elem_tree = document.getElementById("tree");
+const tree_canvas = elem_tree.getContext("2d");
+tree_canvas.font = "15px Arial";
+
+const elem_matrix_tree = document.getElementById("matrix_tree");
+const elem_matrix_conformity = document.getElementById("matrix_conformity");
 
 const directed = document.getElementById("directed"); // Перевірка на напрямленість графу
 const elem_table = document.getElementById("matrix");
@@ -58,10 +70,15 @@ const elem_table = document.getElementById("matrix");
 // let elem_isolated_vertex = document.getElementById("isolated_vertex");
 // let elem_pendant_vertex = document.getElementById("pendant_vertex")
 // let elem_regulara_graph = document.getElementById("regular_graph");
+
+
 let elem_slider = document.getElementById("number_of_vertex");
 let elem_output = document.getElementById("output");
 elem_output.innerHTML = elem_slider.value;
 let n = +elem_slider.value; // кількість вершин
+
+let elem_halt = document.getElementById("halt");
+let halt = +elem_halt.value;
 
 for (let i = 0; i < n; i++) {
     matrix_undirected[i] = [];

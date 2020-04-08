@@ -4,12 +4,15 @@
  * @param {number} y - центр вершини по Y.
  * @param {string} label - ім'я вершини.
  */
-function draw_vertex(x, y, label) {
+function draw_vertex(x, y, label, flag = 0) {
     ctx.beginPath();
     ctx.arc(x, y, 20, 0, 2 * Math.PI);
     ctx.stroke();
 
-    ctx.fillStyle = '#FFCDC2';
+    if (flag == 1) ctx.fillStyle = '#FF5733';
+    else if (flag == 2) ctx.fillStyle = '#00A1FF';
+    else ctx.fillStyle = '#FFCDC2';
+
     ctx.fill();
     ctx.fillStyle = 'black';
 
@@ -42,28 +45,40 @@ function draw_lines(n) {
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
             if(matrix[i][j]) {
-                let from = {
-                    x: array_vertex[i][0],
-                    y: array_vertex[i][1]
-                }
-                let to = {
-                    x: array_vertex[j][0],
-                    y: array_vertex[j][1]
-                }
-                let flag = i === j;
-                
-				let coordinates = findCoordinates(from, to);
-                ctx.beginPath();
-                ctx.moveTo(coordinates.point1.x, coordinates.point1.y);
-                ctx.lineTo(coordinates.point2.x, coordinates.point2.y);
-                ctx.stroke();
-				
-                if(directed.checked) {
-                    drawArrowhead(coordinates.point1.x, coordinates.point1.y, coordinates.point2.x, coordinates.point2.y);
-                }
+                line(i, j);
             }
         }
     }
+}
+
+function line(i, j, flag = 0) {
+    let from = {
+        x: array_vertex[i][0],
+        y: array_vertex[i][1]
+    }
+    let to = {
+        x: array_vertex[j][0],
+        y: array_vertex[j][1]
+    }
+    
+    let coordinates = findCoordinates(from, to);
+    
+    if (flag == 1) ctx.strokeStyle = '#FF5733';
+    else if (flag == 2) ctx.strokeStyle = '#00A1FF'
+    else ctx.strokeStyle = '#000000';
+
+    ctx.beginPath();
+    
+    ctx.moveTo(coordinates.point1.x, coordinates.point1.y);
+    ctx.lineTo(coordinates.point2.x, coordinates.point2.y);
+    
+    ctx.stroke();
+    
+    if(directed.checked) {
+        drawArrowhead(coordinates.point1.x, coordinates.point1.y, coordinates.point2.x, coordinates.point2.y);
+    }
+
+    ctx.strokeStyle = '#000000';
 }
 
 /**
@@ -259,7 +274,7 @@ function draw_walks() {
 function draw_graph_condition() {
     ctx = graph_cond;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    calculate_vertex_matrix(komponents.length, true);
+    calculate_vertex_matrix(komponents.length, 1);
     draw_graph(komponents.length);
     calculate_vertex_matrix(n);
     ctx = canvas.getContext("2d");

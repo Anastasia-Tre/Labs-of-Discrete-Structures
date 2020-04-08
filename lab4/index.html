@@ -30,17 +30,29 @@
 					<h3>Матриця суміжності</h3>
 					<table id='matrix'></table>
 
-					
+					<h3>Обхiд графа</h3>
+
+					<div class="slidecontainer">
+						<input id="halt" type="range" min="-1" max="20" value="-1" class="slider" style="width: 200px;">
+					</div>
+
+					<h3>Матриця дерева обходу</h3>
+					<table id='matrix_tree'></table>
+
+					<h3>Матриця вдповiдностi вершин i одержаної нумерацiї</h3>
+					<table id='matrix_conformity'></table>
 
 				</div>
 			</div>
 
-			<!-- <div class="style3">
-				<div id="info_table" class="border">
+			<div class="style3">
+				<div id="info_table">
 					
-					
+					<h2>Дерево обходу</h2>
+					<canvas id="tree" width="550" height="550" class="border"></canvas>
+				
 				</div>
-			</div> -->
+			</div>
 		</div>
 		
 		<script src="boxa.js"></script>

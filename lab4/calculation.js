@@ -8,38 +8,16 @@ function calculation(matrix, n) {
 
     draw_graph(n);
 
-    draw_matrix(matrix, elem_table,n);
+    draw_matrix(matrix, elem_table, n);
 
-    // reachability(matrix);
-    // draw_matrix_reachability(array_reachability);
+    search_edges(matrix);
     
 
-    // matrix_in_2 = multiplication_matrix(matrix, matrix);
-    // matrix_in_3 = multiplication_matrix(matrix_in_2, matrix);
-    // draw_matrix(matrix_in_2, elem_table_in_2,n);
-    // draw_matrix(matrix_in_3, elem_table_in_3,n);    
-
-    // connectivity_matrix = connectivity(array_reachability);
-    // draw_matrix(connectivity_matrix, elem_connectivity_matrix,n);
     
-    // komponenta(connectivity_matrix);
-    // draw_matrix(connectivity_matrix, elem_connectivity_matrix_komponenta,n);
-    // //vec(vector_index);
-    // search_komponenta(connectivity_matrix, vector_index);
-    // draw_komponents(komponents);
-
-    
-    // search_walk_2(matrix);
-    // search_walk_3(matrix);
-    // draw_walks();
 
 
-    // connect_vertex_komponenta();
-    // search_edges(matrix);
-    // create_matrix_condition();
-    
-    // draw_matrix(matrix_condition, elem_matrix_condition, komponents.length);
-    // draw_graph_condition();
+
+
 }
 
 
@@ -69,7 +47,7 @@ function vertex(p, q, x0, y0) {
  * Розрахунок координат вершин і зв'язків.
  * 
  */
-function calculate_vertex_matrix(n, cond) {
+function calculate_vertex_matrix(n, cond = 0) {
 	array_vertex = [];
     // Координата центра
 	array_vertex.push([270, 270, 295 ,270 ]);
@@ -89,9 +67,10 @@ function calculate_vertex_matrix(n, cond) {
         n3 = +n1n2n3n4[2],
         n4 = +n1n2n3n4[3];
 
-    if (cond) {
+    if (cond == 1) {
         matrix = matrix_condition;
     }
+    else if (cond == 2) matrix = matrix_tree;
     
     // Якщо кількість вершин більше 12, то зв'язки розраховуються випадковим чином
     else if (n > 12) {
@@ -141,7 +120,7 @@ function undirect(matrix) {
  * @param {number} from[].y - координата вершини початку зв'язку по Y.
  * @param {Object[]} to  - координати вершини кiнця зв'язку.
  * @param {number} to[].x - координата вершини кiнця зв'язку по X.
- * @param {number} to[].y - координата вершини кiнця звмязку по Y.
+ * @param {number} to[].y - координата вершини кiнця зв'язку по Y.
  * @returns {Object[]} - point1.x,  point1.y, point2.x, point2.y - координати початка і кiнця зв'язку
  */
 function findCoordinates(from, to) {
