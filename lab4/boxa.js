@@ -52,6 +52,7 @@ const elem_table = document.getElementById("matrix");
 // const elem_walk_2 = document.getElementById("walk_2");
 // const elem_walk_3 = document.getElementById("walk_3");
 // const elem_matrix_condition = document.getElementById("matrix_condition");
+//
 
 // let elem_vertex_degree = document.getElementById("vertex_degree");
 // let elem_isolated_vertex = document.getElementById("isolated_vertex");
