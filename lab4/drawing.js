@@ -63,7 +63,7 @@ function line(i, j, flag = 0) {
     
     let coordinates = findCoordinates(from, to);
     
-    if (flag == 1) ctx.strokeStyle = '#FF5733';
+    if (flag == 1) ctx.strokeStyle = '#FF0000';
     else if (flag == 2) ctx.strokeStyle = '#00A1FF'
     else ctx.strokeStyle = '#000000';
 

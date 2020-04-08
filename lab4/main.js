@@ -68,14 +68,12 @@ elem_halt.oninput = function() {
     let v1 = array_halt[halt][0];
     let v2 = array_halt[halt][1];
 
-    for (let i = 0; i <= halt; i++) {
+    for (let i = 0; i < halt; i++) {
         let v = array_halt[i][0];
         draw_vertex(array_vertex[v][0], array_vertex[v][1], v+1, 2);
         let q = array_halt[i+1][0];
         line(v, q, 2);
     }
-
-    //console.log(v1, v2);
 
     draw_vertex(array_vertex[v1][0], array_vertex[v1][1], v1+1, 1);
     draw_vertex(array_vertex[v2][0], array_vertex[v2][1], v2+1, 1);
@@ -83,8 +81,6 @@ elem_halt.oninput = function() {
     
     line(v1, v2, 1);
  
-
-
 }
 
 
@@ -100,7 +96,7 @@ function dfs(a) {
     k = 1;
     dfs_routine(a);
 
-    array_halt.push([array_halt[array_halt.length-1][1], a]);
+    
 }
 
 
@@ -154,6 +150,7 @@ function build_matrix_tree() {
     }
 }
 
+
 /**
  * Зображення дерева обходу
  * 
@@ -167,6 +164,7 @@ function draw_tree() {
     calculate_vertex_matrix(n);
     ctx = canvas.getContext("2d");
 }
+
 
 /**
  * Побудова матриці відповідності вершин і одержаної нумерації
