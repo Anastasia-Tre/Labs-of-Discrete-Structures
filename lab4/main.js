@@ -102,7 +102,7 @@ function dfs(a) {
 
 
 /**
- * Функція, що рекурсивно викликається з основної
+ * Функція, що рекурсивно викликається з функції dfs
  * 
  */
 function dfs_routine(v) {
@@ -161,6 +161,11 @@ function draw_tree() {
 
     calculate_vertex_matrix(n, 2);
     draw_graph(n);
+
+    for (let i = 0; i < n; i++) {
+        draw_vertex(array_vertex[i][0], array_vertex[i][1], array_dfs[i]);
+    }
+
     calculate_vertex_matrix(n);
     ctx = canvas.getContext("2d");
 }
