@@ -33,7 +33,8 @@ function checked() {
     build_weight_matrix_kistyak();
     draw_tree_kistyak();
     draw_matrix(matrix_kistyak, elem_matrix_kistyak, n);
-
+    draw_matrix(weights_matrix, elem_weights_matrix, n);
+    console.log(min_kistyak);
 
 }
 
@@ -92,7 +93,7 @@ function check_matrix() {
             if (matrix_from_scilab[i][j] == 1 && weights_matrix[i][j] == 0) {
                 matrix_from_scilab[i][j] = 0;
             }
-            if (matrix_from_scilab[i][j] == 0 && weights_matrix[i][j] !== 0) {
+            if (matrix_from_scilab[i][j] == 0 && matrix_from_scilab[j][i] == 0 && weights_matrix[i][j] !== 0) {
                 weights_matrix[i][j] = 0;
             }
         }
@@ -153,13 +154,47 @@ function algorithm_kraskala() {
         if (array_weight_of_edges[i] !== 0) {
             if (!used.includes(sorted_array_edges[i][0])) {
                 used.push(sorted_array_edges[i][0]);
+                used.push(sorted_array_edges[i][1]);
+
                 min_kistyak.push(sorted_array_edges[i]);
+
+            }
+            else if (used.length == n && min_kistyak.length < n-1) {
+                min_kistyak.push(sorted_array_edges[i]);
+                if (check_cycle(sorted_array_edges[i])) {
+                    min_kistyak.pop();
+                }
             }
         }
     }
 
 
 }
+
+
+
+function check_cycle(q) {
+    color = [];
+    for (let i = 0; i < n; i++) {
+        color[i] = 'white';
+    }
+    return cycle(q[0]);
+}
+
+
+function cycle(v) {
+    color[v] = 'grey';
+    for (let elem of min_kistyak) {
+        if (elem[0] == v) {
+            let u = elem[1];
+            if (color[u] == 'white') cycle(u);
+            if (color[u] == 'grey') {
+                return true;
+            }
+        }
+    }
+    color[v] = 'black';
+} 
 
 
 
@@ -226,6 +261,7 @@ function build_matrix_kistyak() {
 
     for (let elem of min_kistyak) {
         matrix_kistyak[elem[0]][elem[1]] = 1;
+        matrix_kistyak[elem[1]][elem[0]] = 1;
     }
 }
 
@@ -248,6 +284,7 @@ function build_weight_matrix_kistyak() {
     
     for (let elem of min_kistyak) {
         weight_matrix_kistyak[elem[0]][elem[1]] = weights_matrix[elem[0]][elem[1]];
+        weight_matrix_kistyak[elem[1]][elem[0]] = weights_matrix[elem[0]][elem[1]]
     }
 }
 
