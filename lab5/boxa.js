@@ -81,6 +81,7 @@ const directed = document.getElementById("directed"); // Перевірка на
 const elem_table = document.getElementById("matrix");
 const elem_matrix_kistyak = document.getElementById("matrix_kistyak");
 const elem_weights_matrix = document.getElementById("weights_matrix");
+const elem_weight_matrix_kistyak = document.getElementById("weight_matrix_kistyak");
 // const elem_table_reachability = document.getElementById("matrix_reachability");
 // const elem_table_in_2 = document.getElementById("matrix^2");
 // const elem_table_in_3 = document.getElementById("matrix^3");

@@ -34,7 +34,7 @@ function checked() {
     draw_tree_kistyak();
     draw_matrix(matrix_kistyak, elem_matrix_kistyak, n);
     draw_matrix(weights_matrix, elem_weights_matrix, n);
-    console.log(min_kistyak);
+    draw_matrix(weight_matrix_kistyak, elem_weight_matrix_kistyak, n);
 
 }
 
@@ -159,7 +159,7 @@ function algorithm_kraskala() {
                 min_kistyak.push(sorted_array_edges[i]);
 
             }
-            else if (used.length == n && min_kistyak.length < n-1) {
+            else if (used.length == n && min_kistyak.length < n) {
                 min_kistyak.push(sorted_array_edges[i]);
                 if (check_cycle(sorted_array_edges[i])) {
                     min_kistyak.pop();
