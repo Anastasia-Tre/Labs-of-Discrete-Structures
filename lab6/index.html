@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+	<title>Labs DS</title>
+	<meta charset='utf-8' />
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+	</head>
+	<body>
+		<div>
+			<div class="style4">
+				<h2>Граф</h2>
+				<canvas id="myCanvas" width="550" height="550" class="border"></canvas>
+				
+			</div>
+
+			<div class = "style2">
+				<div id="info_table" class="border">
+					<h2>Labs DS</h2>
+					<div class="style1">Номер заліковки: 9326</div>
+					<div class="slidecontainer">
+						Кількість вершин:
+						<input id="number_of_vertex" type="range" min="1" max="17" value="12" class="slider"> = 
+						<div id="output" style="display: inline-block;"></div>
+					</div>
+					<div class="style1">
+						<input type="checkbox" id="directed">Напрямлений
+					</div>
+
+					<h3>Матриця суміжності</h3>
+					<table id='matrix'></table>
+
+					<h3>Обхiд графа</h3>
+					<div class="slidecontainer">
+						<input id="halt" type="range" min="0" max="3" value="0" class="slider" style="width: 200px;">
+					</div>
+
+					<h3>Стартова вершина: 1</h3>
+					<h3>Кінцева вершина:</h3>
+					<div class="slidecontainer">
+						<input id='end' type="number" min='2' max='12' value="12">
+					</div>
+
+					<h3>Найкоротший шлях</h3>
+					<table id='dijkstra'></table>
+
+				</div>
+			</div>
+
+			<div class="style3">
+				<div id="info_table">
+					
+				
+				</div>
+			</div>
+		</div>
+		
+		<script src="boxa.js"></script>
+		<script src="calculation.js"></script>
+		<script src="drawing.js"></script>	
+		<script src="main.js"></script>		
+		
+	</body>
+</html>
